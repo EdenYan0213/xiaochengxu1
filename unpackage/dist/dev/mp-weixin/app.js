@@ -2,7 +2,12 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 if (!Math) {
-  "./pages/index/index.js";
+  "./pages/home/home.js";
+  "./pages/cate/cate.js";
+  "./pages/cart/cart.js";
+  "./pages/my/my.js";
+  "./subpkg/goods_detail/goods_detail.js";
+  "./subpkg/goods_list/goods_list.js";
 }
 const _sfc_main = {
   onLaunch: function() {
@@ -16,6 +21,9 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
+common_vendor.wx$1.$http = common_vendor.$http;
+common_vendor.index.$http = common_vendor.$http;
+common_vendor.$http.baseUrl = "https://api-hmugo-web.itheima.net";
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
   return {
