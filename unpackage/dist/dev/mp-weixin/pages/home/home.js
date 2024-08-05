@@ -70,25 +70,25 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       };
     }),
     c: common_vendor.f($data.floorList, (item, i, i0) => {
-      return common_vendor.e({
+      return {
         a: item.floor_title.image_src,
         b: item.product_list[0].image_src,
         c: item.product_list[0].image_width + "rpx",
-        d: item.product_list[0].url
-      }, _ctx.i2 !== 0 ? {
-        e: common_vendor.f(item.product_list, (item2, i2, i1) => {
-          return {
-            a: item2.image_src,
-            b: item2.image_width + "rpx",
-            c: i2,
-            d: item2.url
-          };
-        })
-      } : {}, {
+        d: item.product_list[0].url,
+        e: common_vendor.f(item.product_list, (item2, index, i1) => {
+          return common_vendor.e({
+            a: index !== 0
+          }, index !== 0 ? {
+            b: item2.image_src,
+            c: item2.image_width + "rpx"
+          } : {}, {
+            d: index,
+            e: item2.url
+          });
+        }),
         f: i
-      });
-    }),
-    d: _ctx.i2 !== 0
+      };
+    })
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
