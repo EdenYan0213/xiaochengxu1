@@ -50,45 +50,60 @@ const _sfc_main = {
         });
       });
       this.floorList = res.message;
+    },
+    //跳转到搜索页面
+    gotoSearch() {
+      common_vendor.index.navigateTo({
+        url: "/subpkg/search/search"
+      });
     }
   }
 };
+if (!Array) {
+  const _easycom_my_search2 = common_vendor.resolveComponent("my-search");
+  _easycom_my_search2();
+}
+const _easycom_my_search = () => "../../uni_modules/my-search/components/my-search/my-search.js";
+if (!Math) {
+  _easycom_my_search();
+}
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.f($data.swiperList, (item, i, i0) => {
+    a: common_vendor.o($options.gotoSearch),
+    b: common_vendor.f($data.swiperList, (item, i, i0) => {
       return {
         a: item.image_src,
         b: "/subpkg/goods_detail/goods_detail?goods_id=" + item.goods_id,
         c: i
       };
     }),
-    b: common_vendor.f($data.navList, (item, i, i0) => {
+    c: common_vendor.f($data.navList, (item, i, i0) => {
       return {
         a: item.image_src,
         b: i,
         c: common_vendor.o(($event) => $options.navClickHandler(item), i)
       };
     }),
-    c: common_vendor.f($data.floorList, (item, i, i0) => {
-      return common_vendor.e({
+    d: common_vendor.f($data.floorList, (item, i, i0) => {
+      return {
         a: item.floor_title.image_src,
         b: item.product_list[0].image_src,
         c: item.product_list[0].image_width + "rpx",
-        d: item.product_list[0].url
-      }, _ctx.i2 !== 0 ? {
+        d: item.product_list[0].url,
         e: common_vendor.f(item.product_list, (item2, i2, i1) => {
-          return {
-            a: item2.image_src,
-            b: item2.image_width + "rpx",
-            c: i2,
-            d: item2.url
-          };
-        })
-      } : {}, {
+          return common_vendor.e({
+            a: i2 !== 0
+          }, i2 !== 0 ? {
+            b: item2.image_src,
+            c: item2.image_width + "rpx"
+          } : {}, {
+            d: i2,
+            e: item2.url
+          });
+        }),
         f: i
-      });
-    }),
-    d: _ctx.i2 !== 0
+      };
+    })
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
