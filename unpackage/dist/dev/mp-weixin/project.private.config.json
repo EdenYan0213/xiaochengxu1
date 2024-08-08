@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "subpkg/goods_detail/goods_detail",
+          "pathName": "subpkg/goods_detail/goods_detail",
+          "query": "goods_id=5514",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "subpkg/goods_list/goods_list",
           "pathName": "subpkg/goods_list/goods_list",
           "query": "cid=5",
