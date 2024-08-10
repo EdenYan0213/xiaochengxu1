@@ -1,6 +1,8 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const mixins_tabbarBadge = require("../../mixins/tabbar-badge.js");
 const _sfc_main = {
+  mixins: [mixins_tabbarBadge.badgeMix],
   data() {
     return {
       // 1. 轮播图的数据列表，默认为空数组

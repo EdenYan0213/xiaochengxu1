@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/cart/cart",
+          "pathName": "pages/cart/cart",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "subpkg/goods_detail/goods_detail",
           "pathName": "subpkg/goods_detail/goods_detail",
           "query": "goods_id=5514",
@@ -37,5 +44,6 @@
         }
       ]
     }
-  }
+  },
+  "libVersion": "3.5.3"
 }

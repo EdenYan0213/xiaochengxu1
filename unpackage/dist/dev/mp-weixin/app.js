@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
+const store_store = require("./store/store.js");
 if (!Math) {
   "./pages/home/home.js";
   "./pages/cate/cate.js";
@@ -27,6 +28,7 @@ common_vendor.index.$http = common_vendor.$http;
 common_vendor.$http.baseUrl = "https://api-hmugo-web.itheima.net";
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
+  app.use(store_store.store);
   return {
     app
   };

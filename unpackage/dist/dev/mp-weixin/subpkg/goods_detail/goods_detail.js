@@ -1,6 +1,25 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
+  watch: {
+    // 定义 total 侦听器，指向一个配置对象
+    total: {
+      // handler 属性用来定义侦听器的 function 处理函数
+      handler(newVal) {
+        const findResult = this.options.find((x) => x.text === "购物车");
+        if (findResult) {
+          findResult.info = newVal;
+        }
+      }
+    },
+    immediate: true
+  },
+  computed: {
+    // 调用 mapState 方法，把 m_cart 模块中的 cart 数组映射到当前页面中，作为计算属性来使用
+    // ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+    ...common_vendor.mapState({ cart: (state) => state.m_cart.cart }),
+    ...common_vendor.mapGetters("m_cart", ["total"])
+  },
   data() {
     return {
       // 商品详情对象
@@ -14,7 +33,7 @@ const _sfc_main = {
         {
           icon: "cart",
           text: "购物车",
-          info: 2
+          info: 0
         }
       ],
       // 右侧按钮组的配置对象
@@ -34,6 +53,7 @@ const _sfc_main = {
   },
   onLoad(options) {
     const goods_id = options.goods_id;
+    this.options[1].info = this.total;
     this.getGoodsDetail(goods_id);
   },
   methods: {
@@ -62,7 +82,29 @@ const _sfc_main = {
           url: "/pages/cart/cart"
         });
       }
-    }
+    },
+    // 右侧按钮的点击事件处理函数
+    buttonClick(e) {
+      if (e.content.text === "加入购物车") {
+        const goods = {
+          goods_id: this.goods_info.goods_id,
+          // 商品的Id
+          goods_name: this.goods_info.goods_name,
+          // 商品的名称
+          goods_price: this.goods_info.goods_price,
+          // 商品的价格
+          goods_count: 1,
+          // 商品的数量
+          goods_small_logo: this.goods_info.goods_small_logo,
+          // 商品的图片
+          goods_state: true
+          // 商品的勾选状态
+        };
+        this.addToCart(goods);
+      }
+    },
+    // 把 m_cart 模块中的 addToCart 方法映射到当前页面使用
+    ...common_vendor.mapMutations("m_cart", ["addToCart"])
   }
 };
 if (!Array) {
@@ -93,10 +135,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       size: "18",
       color: "gray"
     }),
-    f: $data.goods_info.goods_introduce,
-    g: common_vendor.o($options.onClick),
-    h: common_vendor.o(_ctx.buttonClick),
-    i: common_vendor.p({
+    f: common_vendor.t(_ctx.cart.length),
+    g: $data.goods_info.goods_introduce,
+    h: common_vendor.o($options.onClick),
+    i: common_vendor.o($options.buttonClick),
+    j: common_vendor.p({
       fill: true,
       options: $data.options,
       buttonGroup: $data.buttonGroup
